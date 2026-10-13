@@ -17,6 +17,12 @@ interface PostsTableProps {
 }
 
 export default function PostsTable({ limit, title }: PostsTableProps) {
+  // Sort posts in dec order on date
+  const sortedPosts: Post[] = [...posts].sort((a,b) => new Date(b.date).getTime()- new Date(a.date).getTime());
+
+  // filter posts to limit
+  const filteredPost = limit ? sortedPosts.slice(0 , limit) : sortedPosts;
+
   return (
     <div className="mt-10">
       <h3 className="text-2xl mb-4 font-semibold">{title ? title : "Posts"}</h3>
@@ -34,7 +40,7 @@ export default function PostsTable({ limit, title }: PostsTableProps) {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {posts.map((post) => (
+          {filteredPost.map((post) => (
             <TableRow key={post.id}>
               <TableCell>{post.title}</TableCell>
               <TableCell className="hidden md:table-cell">
