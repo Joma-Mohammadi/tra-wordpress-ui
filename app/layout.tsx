@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "TraversyPress",
+  title: "Dashboard",
   description: "Admin Dashboard",
 };
 
